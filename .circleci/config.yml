@@ -2,12 +2,24 @@
 version: 2.1
 # Use a package of configuration called an orb.
 #
+jobs:
+  after-commit:
+    steps:
+      - run:
+        command: |
+          echo after commit
+  job-welcom:
+    steps:
+      - run:
+        command: |
+          echo job welcom
+
 workflows:
   # Name the workflow "welcome"
   commit:
     jobs:
-      - echo commit now
+      - after-commit
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - echo welcome now
+      - job-welcom
